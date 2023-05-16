@@ -1,14 +1,9 @@
 import 'package:dream_small/src/app.dart';
 import 'package:dream_small/src/pages/new_game.dart';
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
-}
-
-String textFromWP(WordPair wp) {
-  return "${wp.first} ${wp.second}";
 }
 
 class MyApp extends StatelessWidget {
