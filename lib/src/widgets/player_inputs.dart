@@ -1,21 +1,28 @@
 import 'package:dream_small/src/pages/new_game.dart';
 import 'package:flutter/material.dart';
 
-class PlayerInputs extends StatelessWidget {
-  const PlayerInputs({super.key, required this.numberAmount, required this.onSubmit});
+class PlayerInputs extends StatefulWidget {
+  const PlayerInputs(
+      {super.key, required this.numberAmount, required this.onSubmit});
 
   final int numberAmount;
   final void Function(PlayerTicket) onSubmit;
 
   @override
+  State<PlayerInputs> createState() => _PlayerInputsState();
+}
+
+class _PlayerInputsState extends State<PlayerInputs> {
+  @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
 
     var nameController = TextEditingController();
-    var numberControllers =
-        List.generate(numberAmount, (index) => TextEditingController());
 
-    var numberInputs = List.generate(numberAmount, (index) {
+    var numberControllers =
+        List.generate(widget.numberAmount, (index) => TextEditingController());
+    var theme = Theme.of(context);
+
+    var numberInputs = List.generate(widget.numberAmount, (index) {
       return TextField(
         controller: numberControllers.elementAt(index),
         decoration: InputDecoration(
@@ -62,7 +69,7 @@ class PlayerInputs extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
