@@ -7,10 +7,12 @@ class NewGame extends StatelessWidget {
       appBar: AppBar(
         title: Text("placeholder"),
       ),
-      body: Column(
-        children: [
-          Center(child: Text("placeholder")),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            Text("placeholder"),
+          ],
+        ),
       ),
     );
   }
