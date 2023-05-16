@@ -15,7 +15,6 @@ class PlayerInputs extends StatefulWidget {
 class _PlayerInputsState extends State<PlayerInputs> {
   @override
   Widget build(BuildContext context) {
-
     var nameController = TextEditingController();
 
     var numberControllers =
@@ -29,6 +28,12 @@ class _PlayerInputsState extends State<PlayerInputs> {
             border: OutlineInputBorder(), label: Text("Number ${index + 1}.")),
       );
     });
+
+    void collectInputAndSubmit() {
+      var ticket = PlayerTicket(nameController.text,
+          numberControllers.map((e) => int.tryParse(e.text) ?? 0).toList());
+      widget.onSubmit(ticket);
+    }
 
     return Column(
       children: [
@@ -63,7 +68,7 @@ class _PlayerInputsState extends State<PlayerInputs> {
             Flexible(
               fit: FlexFit.tight,
               child: FilledButton.icon(
-                onPressed: () {},
+                onPressed: collectInputAndSubmit,
                 icon: Icon(Icons.send),
                 label: Text("Submit player"),
               ),
