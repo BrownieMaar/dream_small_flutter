@@ -20,9 +20,6 @@ class _NewGameState extends State<NewGame> {
     setState(() {
       playerTickets.add(ticket);
     });
-    for (var ticket in playerTickets) {
-      print(ticket.name);
-    }
   }
 
   @override
@@ -49,14 +46,31 @@ class _NewGameState extends State<NewGame> {
               onSubmit: addTicket,
             ),
             SizedBox(height: 20),
-            Wrap(
-              alignment: WrapAlignment.start,
-              spacing: 8,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...playerTickets.map((e) => Chip(
-                  avatar: Icon(Icons.person),
-                      label: Text(e.name),
-                    ))
+                Text(
+                  "Submitted:",
+                  style: theme.textTheme.headlineSmall,
+                ),
+                SizedBox(height: 10),
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: 8,
+                  children: [
+                    ...playerTickets.asMap().entries.map((e) {
+                      return Chip(
+                        avatar: Icon(Icons.person),
+                        label: Text(e.value.name),
+                        onDeleted: () {
+                          setState(() {
+                            playerTickets.removeAt(e.key);
+                          });
+                        },
+                      );
+                    })
+                  ],
+                ),
               ],
             )
           ],
