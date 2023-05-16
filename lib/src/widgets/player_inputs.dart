@@ -1,9 +1,11 @@
+import 'package:dream_small/src/pages/new_game.dart';
 import 'package:flutter/material.dart';
 
 class PlayerInputs extends StatelessWidget {
-  const PlayerInputs({super.key, required this.numberAmount});
+  const PlayerInputs({super.key, required this.numberAmount, required this.onSubmit});
 
   final int numberAmount;
+  final void Function(PlayerTicket) onSubmit;
 
   @override
   Widget build(BuildContext context) {
