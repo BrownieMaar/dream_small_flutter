@@ -68,7 +68,22 @@ class _NewGameState extends State<NewGame> {
                           });
                         },
                       );
-                    })
+                    }),
+                    if (playerTickets.isEmpty) Text("No tickets yet."),
+                  ],
+                ),
+                SizedBox(height: 30),
+                Row(
+                  children: [
+                    Expanded(
+                      child: FilledButton.icon(
+                        onPressed: null,
+                        icon: Icon(Icons.calculate),
+                        label: Text(
+                          "Get results",
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
