@@ -11,8 +11,9 @@ class DreamSmallApp extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           String userInput = "";
-          bool isValid =
-              userInput.isNotEmpty && int.tryParse(userInput) != null;
+          bool isValid = userInput.isNotEmpty &&
+              int.tryParse(userInput) != null &&
+              int.parse(userInput) > 0;
           void onSubmit() {
             print("start game with $userInput numbers");
             Navigator.pop(context); // Close the dialog
@@ -45,10 +46,13 @@ class DreamSmallApp extends StatelessWidget {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         label: Text("amount of numbers"),
-                        errorText: int.tryParse(userInput) == null &&
-                                userInput.isNotEmpty
+                        errorText: userInput.isNotEmpty &&
+                                int.tryParse(userInput) == null
                             ? "Provide a number"
-                            : null),
+                            : userInput.isNotEmpty &&
+                                    int.parse(userInput) < 1
+                                ? "Number must be greater than 0"
+                                : null),
                   )
                 ],
               ),
