@@ -14,6 +14,17 @@ class NewGame extends StatefulWidget {
 }
 
 class _NewGameState extends State<NewGame> {
+  List<PlayerTicket> playerTickets = [];
+
+  addTicket(PlayerTicket ticket) {
+    setState(() {
+      playerTickets.add(ticket);
+    });
+    for (var ticket in playerTickets) {
+      print(ticket.name);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -21,10 +32,6 @@ class _NewGameState extends State<NewGame> {
     final Map<String, String>? arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
     final int numberAmount = int.parse(arguments?['numberAmount'] ?? "5");
-
-    List<PlayerTicket> playerTickets = List.empty(growable: true);
-
-    addTicket(PlayerTicket ticket) => playerTickets.add(ticket);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,9 +41,24 @@ class _NewGameState extends State<NewGame> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: PlayerInputs(
-          numberAmount: numberAmount,
-          onSubmit: addTicket,
+        child: Column(
+          children: [
+            PlayerInputs(
+              numberAmount: numberAmount,
+              onSubmit: addTicket,
+            ),
+            SizedBox(height: 20),
+            Wrap(
+              alignment: WrapAlignment.start,
+              spacing: 8,
+              children: [
+                ...playerTickets.map((e) => Chip(
+                  avatar: Icon(Icons.person),
+                      label: Text(e.name),
+                    ))
+              ],
+            )
+          ],
         ),
       ),
     );
