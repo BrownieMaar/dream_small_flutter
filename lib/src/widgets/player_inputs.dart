@@ -36,6 +36,7 @@ class _PlayerInputsState extends State<PlayerInputs> {
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Add players",

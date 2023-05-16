@@ -42,6 +42,7 @@ class _NewGameState extends State<NewGame> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PlayerInputs(
               numberAmount: numberAmount,
