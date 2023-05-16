@@ -16,7 +16,9 @@ class DreamSmallApp extends StatelessWidget {
           void onSubmit() {
             print("start game with $userInput numbers");
             Navigator.pop(context); // Close the dialog
-            Navigator.pushNamed(context, "/game");
+            Navigator.pushNamed(context, "/game", arguments: {
+              "numberAmount": userInput,
+            });
           }
 
           return StatefulBuilder(
@@ -52,10 +54,7 @@ class DreamSmallApp extends StatelessWidget {
               ),
               actions: [
                 TextButton(
-                  onPressed:
-                      isValid
-                          ? onSubmit
-                          : null,
+                  onPressed: isValid ? onSubmit : null,
                   child: Text('Start game'),
                 ),
               ],
