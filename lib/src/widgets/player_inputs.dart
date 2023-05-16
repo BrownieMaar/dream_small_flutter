@@ -41,7 +41,6 @@ class _PlayerInputsState extends State<PlayerInputs> {
         Text(
           "Add players",
           style: theme.textTheme.headlineLarge,
-          textAlign: TextAlign.start,
         ),
         SizedBox(height: 20),
         TextField(
